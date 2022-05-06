@@ -1,3 +1,12 @@
-// Renomeie esse arquivo
+const getAllProducts = () => {
 
-// criando PR
+};
+
+const getProducstById = () => {
+    
+};
+
+module.exports = {
+    getAllProducts,
+    getProducstById,
+};
