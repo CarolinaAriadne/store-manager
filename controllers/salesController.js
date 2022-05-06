@@ -1,12 +1,12 @@
-const getAllSales = () => {
+const getAllControllerSales = () => {
     
 };
 
-const getSalesById = () => {
+const getByIdControllerSales = () => {
     
 };
 
 module.exports = {
-    getAllSales,
-    getSalesById,
+    getAllControllerSales,
+    getByIdControllerSales,
 };
