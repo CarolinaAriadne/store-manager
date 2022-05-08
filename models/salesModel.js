@@ -11,11 +11,12 @@ const getAllSalesModel = async () => {
 };
 
 const getByIdSalesModel = async (id) => { 
-    const query2 = `SELECT   date, sp.product_id AS productId, 
+    const query2 = `SELECT  date, sp.product_id AS productId, 
     sp.quantity
     FROM sales AS sa
     JOIN sales_products AS sp ON sa.id = sp.sale_id
-    ORDER BY sa.id, sp.product_id;`;
+    WHERE sp.sale_id = ?`;
+    // ORDER BY sa.id, sp.product_id; precisa disso? acho q n, porém talvez sim, o teste dirá;
     const [response2] = await connection.execute(query2, [id]);
     return response2;
 };
