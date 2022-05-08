@@ -13,6 +13,6 @@ router.get('/products/:id', getByIdControllerProducts);
 
 router.get('/sales', getAllControllerSales);
 
-router.get('sales/:id', getByIdControllerSales);
+router.get('/sales/:id', getByIdControllerSales);
 
 module.exports = router;
