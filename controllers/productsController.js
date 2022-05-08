@@ -10,10 +10,14 @@ const getAllControllerProducts = async (_req, res, next) => {
     }
 };
 
-const getByIdControllerProducts = async (req, res) => {
-    const { id } = req.params;
-    const productId = await productsService.getByIdServiceProduct(id);
-        return res.status(200).json(productId);
+const getByIdControllerProducts = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const productId = await productsService.getByIdServiceProduct(id);
+            return res.status(200).json(productId);
+    } catch (error) {
+        next(error);
+    }
 };
 
 module.exports = {
