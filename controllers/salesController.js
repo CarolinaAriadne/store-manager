@@ -9,10 +9,14 @@ const getAllControllerSales = async (_req, res, next) => {
     }
 };
 
-const getByIdControllerSales = async (req, res) => {
+const getByIdControllerSales = async (req, res, next) => {
+    try {
         const { id } = req.params;
         const salesId = await salesService.getByIdServiceSales(id);
         return res.status(200).json(salesId);
+    } catch (error) {
+        next(error);
+    }
 };
 
 module.exports = {

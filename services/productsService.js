@@ -16,6 +16,7 @@ const getAllServiceProducts = async () => {
 
 const getByIdServiceProduct = async (id) => {
     const productById = await productsModel.getByIdProductsModel(id);
+    // console.log(productById);
     if (productById.length === 0) {
         throw erroHandler(404, 'Product not found');
     }
