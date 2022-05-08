@@ -17,8 +17,8 @@ const getByIdSalesModel = async (id) => {
     JOIN sales_products AS sp ON sa.id = sp.sale_id
     WHERE sp.sale_id = ?`;
     // ORDER BY sa.id, sp.product_id; precisa disso? acho q n, porém talvez sim, o teste dirá;
-    const [response2] = await connection.execute(query2, [id]);
-    return response2;
+    const [response] = await connection.execute(query2, [id]);
+    return response;
 };
 
 module.exports = {

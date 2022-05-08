@@ -8,8 +8,8 @@ const getAllProductsModel = async () => {
 
 const getByIdProductsModel = async (id) => {
     const query2 = 'SELECT * FROM StoreManager.products WHERE id = ?;';
-    const [response2] = await connection.execute(query2, [id]);
-    return response2;
+    const [response] = await connection.execute(query2, [id]);
+    return response[0];
 };
 
 module.exports = { getAllProductsModel, getByIdProductsModel };
