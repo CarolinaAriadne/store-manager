@@ -29,16 +29,20 @@ const validateError422 = joi.object({
     }),
 });
 
-const validateDadosErro400 = (req, _res, next) => {
-    const { error } = validateError400.validate(req.body);
+const validateProduct400 = (req, _res, next) => {
+    const { name, quantity } = req.body;
+
+    // console.log(req.body);
+    const { error } = validateError400.validate({ name, quantity });
 
     if (error) next({ status: 400, message: error.message });
 
     next();
 };
 
-const validateDadosErro422 = (req, _res, next) => {
-    const { error } = validateError422.validate(req.body);
+const validateProduct422 = (req, _res, next) => {
+    const { name, quantity } = req.body;
+    const { error } = validateError422.validate({ name, quantity });
 
     if (error) next({ status: 422, message: error.message });
 
@@ -46,8 +50,8 @@ const validateDadosErro422 = (req, _res, next) => {
 };
 
 module.exports = {
-    validateDadosErro400,
-    validateDadosErro422, 
+    validateProduct400,
+    validateProduct422, 
 }; 
 
 // push - teste
