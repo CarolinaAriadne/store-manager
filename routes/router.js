@@ -19,4 +19,10 @@ router.get('/sales/:id', getByIdControllerSales);
 
 router.post('/products', validateDadosErro400, validateDadosErro422, createName);
 
+router.post('/sales', validateDadosErro400, validateDadosErro422);
+
+router.put('/products/:id', validateDadosErro400, validateDadosErro422);
+
+router.put('/sales/:id', validateDadosErro400, validateDadosErro422);
+
 module.exports = router;
