@@ -6,10 +6,10 @@ const validateError400 = joi.object({
     .messages({
         'any.required': '"name" is required',   
     }),
-    quantify: joi.number()
-    .require()
+    quantity: joi.number()
+    .required()
     .messages({
-        'any.required': '"quantify" is required',
+        'any.required': '"quantity" is required',
     }),
 
 });
@@ -19,12 +19,13 @@ const validateError422 = joi.object({
     .required()
     .min(5)
     .message({
-        'string.min': '"name" length must be at least 5 characters',
+        'string.min': '"name" length must be at least 5 characters long',
     }),
-    quantify: joi.number()
+    quantity: joi.number()
+    .required()
     .min(1)
     .messages({
-        'number.min': '"quantify must be grater than or equal to 1',
+        'number.min': '"quantity" must be greater than or equal to 1',
     }),
 });
 

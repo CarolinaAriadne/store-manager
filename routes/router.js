@@ -1,7 +1,6 @@
 const express = require('express');
-const { required } = require('joi');
 
-const { validateDadosErro400, validateDadosErro422 } = required('./middlewares/validateProducts');
+const { validateDadosErro400, validateDadosErro422 } = require('../middlewares/validateProducts');
 
 const { getAllControllerProducts, 
 getByIdControllerProducts, createName } = require('../controllers/productsController');

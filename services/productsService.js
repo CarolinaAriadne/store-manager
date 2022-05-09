@@ -24,7 +24,7 @@ const getByIdServiceProduct = async (id) => {
 };
 
 const createNameService = async (name, quantify) => {
-    const verifyName = await productsModel.getProductName(name, quantify);
+    const verifyName = await productsModel.getProductName(name, quantify); // revisão recebeu um parâmetro aqui, pq?
     return verifyName; // return pro lint n chiar no commit
     // if(verifyName.length)
 
