@@ -20,7 +20,20 @@ const getByIdControllerProducts = async (req, res, next) => {
   }
 };
 
+const createName = async (req, res, next) => {
+  try {
+    const { name, quantify } = req.body;
+
+    const newProduct = await productsService.createNameService(name, quantify);
+
+    return res.status(201).json(newProduct);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllControllerProducts,
   getByIdControllerProducts,
+  createName,
 };

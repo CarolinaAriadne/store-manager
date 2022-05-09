@@ -23,7 +23,17 @@ const getByIdServiceProduct = async (id) => {
     return productById;
 };
 
+const createNameService = async (name, quantify) => {
+    const verifyName = await productsModel.getProductName(name, quantify);
+    return verifyName; // return pro lint n chiar no commit
+    // if(verifyName.length)
+
+    // const registerNameQuantify= await productsModel.createNameModel(name);
+    // return registerNameQuantify;
+};
+
 module.exports = {
     getAllServiceProducts,
     getByIdServiceProduct,
+    createNameService,
 };
