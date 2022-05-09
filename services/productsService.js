@@ -26,7 +26,7 @@ const getByIdServiceProduct = async (id) => {
 const createNameService = async (name, quantify) => {
     const verifyName = await productsModel.getProductName(name); 
     // console.log('aqui é na service', verifyName); 
-    if (!verifyName) {
+    if (verifyName) {
         throw erroHandler(409, 'Product already exists');
     }
 
