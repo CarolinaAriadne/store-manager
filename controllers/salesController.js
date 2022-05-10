@@ -19,7 +19,19 @@ const getByIdControllerSales = async (req, res, next) => {
     }
 };
 
+const registerSales = async (req, res, next) => {
+    try {
+        const sale = req.body;
+        const response = await salesService.registerSalesService(sale);
+        console.log('sales', response);
+        return res.status(201).json(response);
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports = {
     getAllControllerSales,
     getByIdControllerSales,
+    registerSales, 
 };

@@ -8,7 +8,8 @@ const { getAllControllerProducts,
 getByIdControllerProducts, createName, 
 updateProduct, deletProduct } = require('../controllers/productsController');
 
-const { getAllControllerSales, getByIdControllerSales } = require('../controllers/salesController');
+const { getAllControllerSales, getByIdControllerSales, 
+    registerSales } = require('../controllers/salesController');
 
 const router = express.Router();
 
@@ -26,8 +27,8 @@ router.put('/products/:id', validateProduct400, validateProduct422, updateProduc
 
 router.delete('/products/:id', deletProduct);
 
-router.post('/sales', validateSales400, validateSales422);
+router.post('/sales', registerSales);
 
-router.put('/sales/:id', validateSales400, validateProduct422);
+router.put('/sales/:id', validateSales400, validateSales422);
 
 module.exports = router;

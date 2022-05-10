@@ -56,10 +56,12 @@ const deletProduct = async (req, res, next) => {
     next(error);
   }
 };
+
 module.exports = {
   getAllControllerProducts,
   getByIdControllerProducts,
   createName,
   updateProduct,
   deletProduct,
+
 };

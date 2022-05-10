@@ -26,7 +26,15 @@ const getByIdServiceSales = async (id) => {
     return salesById;
 };
 
+const registerSalesService = async (sale) => {
+    const salesRegister = await salesModel.registerSalesModel(sale);
+    console.log('aqui', salesRegister);
+};
+
+// Promise.all, como vamos fazer a inserção de vários dados no banco, precisamos aguardar todas as requisições serem "resolvidos" até que possamos prosseguir
+
 module.exports = {
     getAllServiceSales,
     getByIdServiceSales,
+    registerSalesService,
 };

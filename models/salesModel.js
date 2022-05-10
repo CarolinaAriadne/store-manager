@@ -21,7 +21,22 @@ const getByIdSalesModel = async (id) => {
     return response;
 };
 
+const registerSalesModel = async (sale) => {
+    const querySales = 'INSERT INTO StorageManager.sales...;';
+    const [response] = await connection.execute(querySales);
+    return response;
+
+    // const query = `SELECT pr.id as productId, sp.quantity
+    // FROM sales_products AS sp
+    // JOIN products AS pr ON pr.id = sp.product_id
+    // WHERE sp.product_id = ?`;
+    // const [response] = await connection.execute(query, [productId, quantity]);
+    // console.log('aqui response model', response);
+    // return response;
+};
+
 module.exports = {
     getAllSalesModel,
     getByIdSalesModel,
+    registerSalesModel,
 };
