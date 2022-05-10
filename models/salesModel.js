@@ -36,16 +36,16 @@ const registerSalesModel = async () => {
     // return response;
 };
 
-const registerSalesProductModel = async (saleId, productId, quantity) => {
-    const query = `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity)
-     VALUES (?,?,?)`;
-     const [response] = await connection.execute(query, [saleId, productId, quantity]);
-     return response;
-};
+// const registerSalesProductModel = async (saleId, productId, quantity) => {
+//     const query = `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity)
+//      VALUES (?,?,?)`;
+//      const [response] = await connection.execute(query, [saleId, productId, quantity]);
+//      return response;
+// };
 
 module.exports = {
     getAllSalesModel,
     getByIdSalesModel,
     registerSalesModel,
-    registerSalesProductModel,
+    // registerSalesProductModel,
 };
