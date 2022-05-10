@@ -68,9 +68,6 @@ const deleteProductService = async (id) => {
 
      await productsModel.deleteProductModel(id);
     // console.log(deleteProductId, 'id');
-
-    // const product = await productsModel.getByIdProductsModel(id);
-    // console.log(product);
 };
 
 module.exports = {
