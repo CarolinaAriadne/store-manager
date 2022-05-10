@@ -23,15 +23,18 @@ const getByIdServiceProduct = async (id) => {
     return productById;
 };
 
-const createNameService = async (name, quantify) => {
+const createNameService = async (name, quantity) => {
     const verifyName = await productsModel.getProductName(name); 
-    // console.log('aqui é na service', verifyName); 
-    if (verifyName) {
+    console.log('aqui é na service', verifyName); 
+    if (verifyName.length > 0) {
         throw erroHandler(409, 'Product already exists');
     }
 
-    const registerNameQuantify = await productsModel.createNameModel(name, quantify);
-    return registerNameQuantify;
+    const productInsertedId = await productsModel.createNameModel(name, quantity);
+
+    const product = await productsModel.getByIdProductsModel(productInsertedId);
+
+    return product;
 };
 
 module.exports = {

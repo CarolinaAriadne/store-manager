@@ -15,16 +15,16 @@ const getByIdProductsModel = async (id) => {
 const getProductName = async (name) => {
     const query = 'SELECT * FROM StoreManager.products WHERE name = ?;';
     const [response] = await connection.execute(query, [name]);
-    // console.log('qui é na model', response);
+    console.log('qui é na model', response);
     return response;
 };
 
-const createNameModel = async (name, quantify) => {
-    const query = 'INSERT INTO StoreManager.products (name, quantify) VALUES (?,?) ';
+const createNameModel = async (name, quantity) => {
+    const query = 'INSERT INTO StoreManager.products (name, quantity) VALUES (?,?);';
+    
+    const [response] = await connection.execute(query, [name, quantity]);
 
-    const [response] = await connection.execute(query, [name], [quantify]);
-
-    return response;
+    return response.insertId;
 };
 
 module.exports = { getAllProductsModel, getByIdProductsModel, getProductName, createNameModel };

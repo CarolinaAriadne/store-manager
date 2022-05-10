@@ -22,9 +22,10 @@ const getByIdControllerProducts = async (req, res, next) => {
 
 const createName = async (req, res, next) => {
   try {
-    const { name, quantify } = req.body;
+    const { name, quantity } = req.body;
 
-    const newProduct = await productsService.createNameService(name, quantify);
+    const newProduct = await productsService.createNameService(name, quantity);
+    console.log(`Aqui é na controler ${newProduct}`);
 
     return res.status(201).json(newProduct);
   } catch (error) {
