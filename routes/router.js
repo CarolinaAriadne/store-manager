@@ -5,7 +5,8 @@ const { validateProduct400, validateProduct422 } = require('../middlewares/valid
 const { validateSales400, validateSales422 } = require('../middlewares/validateSales');
 
 const { getAllControllerProducts, 
-getByIdControllerProducts, createName } = require('../controllers/productsController');
+getByIdControllerProducts, createName, 
+updateProduct } = require('../controllers/productsController');
 
 const { getAllControllerSales, getByIdControllerSales } = require('../controllers/salesController');
 
@@ -21,9 +22,9 @@ router.get('/sales/:id', getByIdControllerSales);
 
 router.post('/products', validateProduct400, validateProduct422, createName);
 
-router.post('/sales', validateSales400, validateSales422);
+router.put('/products/:id', validateProduct400, validateProduct422, updateProduct);
 
-router.put('/products/:id', validateProduct400, validateProduct422);
+router.post('/sales', validateSales400, validateSales422);
 
 router.put('/sales/:id', validateSales400, validateProduct422);
 

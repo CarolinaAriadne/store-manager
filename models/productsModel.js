@@ -27,4 +27,22 @@ const createNameModel = async (name, quantity) => {
     return response.insertId;
 };
 
-module.exports = { getAllProductsModel, getByIdProductsModel, getProductName, createNameModel };
+const getProductIdUp = async (id) => {
+    const query = 'SELECT * FROM StoreManager.products WHERE id = ?;';
+    const [response] = await connection.execute(query, [id]);
+    return response;
+};
+
+const updateProductModel = async (id, name, quantity) => {
+    const query = 'UPDATE products SET name=?, quantity=? WHERE id = ?;';
+    await connection.execute(query, [name, quantity, id]);
+    return id;
+};
+
+module.exports = { getAllProductsModel,
+getByIdProductsModel, 
+getProductName,
+createNameModel,
+getProductIdUp,
+updateProductModel,
+};

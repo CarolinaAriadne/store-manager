@@ -37,8 +37,29 @@ const createNameService = async (name, quantity) => {
     return product;
 };
 
+const updateProductService = async (id, name, quantity) => {
+    // console.log('eu sou o id na service', id);
+    const verifyId = await productsModel.getProductIdUp(id);
+    // console.log('id na service, retorno model', verifyId);
+
+    if (verifyId.length === 0) {
+        // console.log('passei aqui');
+        throw erroHandler(404, 'Product not found');
+    }
+
+    const updatedProductId = await productsModel.updateProductModel(id, name, quantity);
+    // console.log('retorno updateProductModel', updatedProductId);
+
+    const product = await productsModel.getByIdProductsModel(updatedProductId);
+
+    // console.log('dados do produto atualizado', product);
+
+    return product;
+};
+
 module.exports = {
     getAllServiceProducts,
     getByIdServiceProduct,
     createNameService,
+    updateProductService,
 };
