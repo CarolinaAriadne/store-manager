@@ -57,9 +57,28 @@ const updateProductService = async (id, name, quantity) => {
     return product;
 };
 
+const deleteProductService = async (id) => {
+    const verifyId = await productsModel.getProductIdUp(id);
+    console.log('verify delete service', verifyId);
+
+    if (verifyId.length === 0) {
+        console.log('passei aqui', verifyId);
+        throw erroHandler(404, 'Product not found'); 
+    }
+
+    const deleteProductId = await productsModel.deleteProductModel(id);
+    console.log(deleteProductId, 'id');
+
+    const product = await productsModel.getByIdProductsModel(deleteProductId);
+    console.log(product);
+
+    return product;
+};
+
 module.exports = {
     getAllServiceProducts,
     getByIdServiceProduct,
     createNameService,
     updateProductService,
+    deleteProductService,
 };
