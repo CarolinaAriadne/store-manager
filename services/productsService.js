@@ -7,7 +7,7 @@ const erroHandler = (status, message) => ({
 
 const getAllServiceProducts = async () => {
     const productsAll = await productsModel.getAllProductsModel();
-    console.log(productsAll);
+    // console.log(productsAll);
     if (productsAll.length === 0) {
         throw erroHandler(404, 'Product not found');
     }
@@ -25,7 +25,7 @@ const getByIdServiceProduct = async (id) => {
 
 const createNameService = async (name, quantity) => {
     const verifyName = await productsModel.getProductName(name); 
-    console.log('aqui é na service', verifyName); 
+    // console.log('aqui é na service', verifyName); 
     if (verifyName.length > 0) {
         throw erroHandler(409, 'Product already exists');
     }
