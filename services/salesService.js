@@ -26,9 +26,11 @@ const getByIdServiceSales = async (id) => {
     return salesById;
 };
 
-const registerSalesService = async (sale) => {
+const registerSalesService = async (sale, saleId, productId, quantity) => {
     const salesRegister = await salesModel.registerSalesModel(sale);
     console.log('aqui', salesRegister);
+    const saleSent = salesModel.registerSalesProductModel(saleId, productId, quantity);
+    console.log(saleSent);
 };
 
 // Promise.all, como vamos fazer a inserção de vários dados no banco, precisamos aguardar todas as requisições serem "resolvidos" até que possamos prosseguir

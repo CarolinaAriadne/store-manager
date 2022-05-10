@@ -21,10 +21,11 @@ const getByIdSalesModel = async (id) => {
     return response;
 };
 
-const registerSalesModel = async (sale) => {
-    const querySales = 'INSERT INTO StorageManager.sales...;';
+const registerSalesModel = async () => {
+    const querySales = 'INSERT INTO StoreManager.sales (date) VALUES (NOW());';
     const [response] = await connection.execute(querySales);
-    return response;
+    console.log(response);
+    return response.insertId;
 
     // const query = `SELECT pr.id as productId, sp.quantity
     // FROM sales_products AS sp
@@ -35,8 +36,16 @@ const registerSalesModel = async (sale) => {
     // return response;
 };
 
+const registerSalesProductModel = async (saleId, productId, quantity) => {
+    const query = `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity)
+     VALUES (?,?,?)`;
+     const [response] = await connection.execute(query, [saleId, productId, quantity]);
+     return response;
+};
+
 module.exports = {
     getAllSalesModel,
     getByIdSalesModel,
     registerSalesModel,
+    registerSalesProductModel,
 };
