@@ -66,13 +66,11 @@ const deleteProductService = async (id) => {
         throw erroHandler(404, 'Product not found'); 
     }
 
-    const deleteProductId = await productsModel.deleteProductModel(id);
-    console.log(deleteProductId, 'id');
+     await productsModel.deleteProductModel(id);
+    // console.log(deleteProductId, 'id');
 
-    const product = await productsModel.getByIdProductsModel(deleteProductId);
-    console.log(product);
-
-    return product;
+    // const product = await productsModel.getByIdProductsModel(id);
+    // console.log(product);
 };
 
 module.exports = {

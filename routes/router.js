@@ -24,7 +24,7 @@ router.post('/products', validateProduct400, validateProduct422, createName);
 
 router.put('/products/:id', validateProduct400, validateProduct422, updateProduct);
 
-router.delete('/products/:id', validateProduct400, validateProduct422, deletProduct);
+router.delete('/products/:id', deletProduct);
 
 router.post('/sales', validateSales400, validateSales422);
 

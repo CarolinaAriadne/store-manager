@@ -40,9 +40,9 @@ const updateProductModel = async (id, name, quantity) => {
 };
 
 const deleteProductModel = async (id) => {
-    const query = 'DELETE FROM StorageManager.products WHERE id = ? ';
+    const query = 'DELETE FROM products WHERE id = ?;';
     await connection.execute(query, [id]);
-    return id;
+    // console.log(id, 'id model');
 };
 
 module.exports = { getAllProductsModel,
