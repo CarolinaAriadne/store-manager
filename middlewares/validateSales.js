@@ -25,18 +25,12 @@ const validateError422 = joi.object({
 });
 
 const validateSales400 = (req, _res, next) => {
-    // const { productId, quantity } = req.body;
     const dados = req.body;
-    // console.log(dados);
 
     dados.forEach(({ productId, quantity }) => {
         const { error } = validateError400.validate({ productId, quantity });
         if (error) next({ status: 400, message: error.message });
     });
-    
-    // const { error } = validateError400.validate({ productId, quantity });
-    
-    // if (error) next({ status: 400, message: error.message });
 
     next();
 };

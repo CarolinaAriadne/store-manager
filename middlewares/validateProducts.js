@@ -32,7 +32,6 @@ const validateError422 = joi.object({
 const validateProduct400 = (req, _res, next) => {
     const { name, quantity } = req.body;
 
-    // console.log(req.body);
     const { error } = validateError400.validate({ name, quantity });
 
     if (error) next({ status: 400, message: error.message });
@@ -53,5 +52,3 @@ module.exports = {
     validateProduct400,
     validateProduct422, 
 }; 
-
-// push - teste

@@ -9,7 +9,7 @@ getByIdControllerProducts, createName,
 updateProduct, deletProduct } = require('../controllers/productsController');
 
 const { getAllControllerSales, getByIdControllerSales, 
-    registerSales } = require('../controllers/salesController');
+    registerSales, updateSale } = require('../controllers/salesController');
 
 const router = express.Router();
 
@@ -29,6 +29,6 @@ router.delete('/products/:id', deletProduct);
 
 router.post('/sales', registerSales);
 
-router.put('/sales/:id');
+router.put('/sales/:id', updateSale);
 
 module.exports = router;

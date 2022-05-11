@@ -24,7 +24,8 @@ const getByIdServiceSales = async (id) => {
 };
 
 const registerSalesService = async (sale) => {
-    const saleId = await salesModel.registerSalesModel(); // retorna o id - number
+    const saleId = await salesModel.getByIdSalesModel();
+    console.log('saleId service', saleId);
 
     const returnPromisse = sale
         .map(({ productId, quantity }) =>
@@ -40,14 +41,21 @@ const registerSalesService = async (sale) => {
     return saleDone;
 };
 
-// const updateSaleService = async (id, productId, quantity) => {
-//     const saleId = await salesModel.updateSaleModel(id, productId, quantity);
-//     console.log(saleId);
-// };
+const updateSaleService = async (id, sale) => {
+    const returnPromisse = sale.map(({ productId, quantity }) => 
+         salesModel.updateSaleModel(id, productId, quantity));
+         await Promise.all(returnPromisse);
+        const saleDone = {
+            saleId: id,
+            itemUpdated: sale,
+        };
+
+        return saleDone;
+};
 
 module.exports = {
     getAllServiceSales,
     getByIdServiceSales,
     registerSalesService,
-    // updateSaleService,
+    updateSaleService,
 };
