@@ -24,28 +24,19 @@ const getByIdSalesModel = async (id) => {
 const registerSalesModel = async () => {
     const querySales = 'INSERT INTO StoreManager.sales (date) VALUES (NOW());';
     const [response] = await connection.execute(querySales);
-    console.log(response);
     return response.insertId;
-
-    // const query = `SELECT pr.id as productId, sp.quantity
-    // FROM sales_products AS sp
-    // JOIN products AS pr ON pr.id = sp.product_id
-    // WHERE sp.product_id = ?`;
-    // const [response] = await connection.execute(query, [productId, quantity]);
-    // console.log('aqui response model', response);
-    // return response;
 };
 
-// const registerSalesProductModel = async (saleId, productId, quantity) => {
-//     const query = `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity)
-//      VALUES (?,?,?)`;
-//      const [response] = await connection.execute(query, [saleId, productId, quantity]);
-//      return response;
-// };
+const registerSalesProductModel = async (saleId, productId, quantity) => {
+    const query = `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity)
+     VALUES (?,?,?)`;
+     const [response] = await connection.execute(query, [saleId, productId, quantity]);
+     return response;
+};
 
 module.exports = {
     getAllSalesModel,
     getByIdSalesModel,
     registerSalesModel,
-    // registerSalesProductModel,
+    registerSalesProductModel,
 };

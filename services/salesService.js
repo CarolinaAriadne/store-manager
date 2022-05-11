@@ -7,7 +7,6 @@ const erroHandler = (status, message) => ({
 
 const getAllServiceSales = async () => {
     const salesAll = await salesModel.getAllSalesModel();
-    console.log(salesAll);
     if (salesAll.length === 0) {
         throw erroHandler(404, 'Sale not found');
     }
@@ -16,8 +15,6 @@ const getAllServiceSales = async () => {
 
 const getByIdServiceSales = async (id) => {
     const salesById = await salesModel.getByIdSalesModel(id);
-
-    console.log(salesById);
    
     if (salesById.length === 0) {
         throw erroHandler(404, 'Sale not found');
@@ -27,13 +24,21 @@ const getByIdServiceSales = async (id) => {
 };
 
 const registerSalesService = async (sale) => {
-    const salesRegister = await salesModel.registerSalesModel(sale);
-    console.log('aqui', salesRegister);
-    // const saleSent = salesModel.registerSalesProductModel();
-    // console.log(saleSent);
-};
+    const saleId = await salesModel.registerSalesModel(); // retorna o id - number
 
-// Promise.all, como vamos fazer a inserção de vários dados no banco, precisamos aguardar todas as requisições serem "resolvidos" até que possamos prosseguir
+    const returnPromisse = sale
+        .map(({ productId, quantity }) =>
+            salesModel.registerSalesProductModel(saleId, productId, quantity));
+
+    await Promise.all(returnPromisse);
+
+    const saleDone = {
+        id: saleId,
+        itemsSold: sale,
+    };
+
+    return saleDone;
+};
 
 module.exports = {
     getAllServiceSales,

@@ -59,10 +59,8 @@ const updateProductService = async (id, name, quantity) => {
 
 const deleteProductService = async (id) => {
     const verifyId = await productsModel.getProductIdUp(id);
-    console.log('verify delete service', verifyId);
 
     if (verifyId.length === 0) {
-        console.log('passei aqui', verifyId);
         throw erroHandler(404, 'Product not found'); 
     }
 
