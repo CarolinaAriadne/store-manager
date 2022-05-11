@@ -40,8 +40,14 @@ const registerSalesService = async (sale) => {
     return saleDone;
 };
 
+const updateSaleService = async (id, productId, quantity) => {
+    const saleId = await salesModel.updateSaleModel(id, productId, quantity);
+    console.log(saleId);
+};
+
 module.exports = {
     getAllServiceSales,
     getByIdServiceSales,
     registerSalesService,
+    updateSaleService,
 };

@@ -2,14 +2,14 @@ const express = require('express');
 
 const { validateProduct400, validateProduct422 } = require('../middlewares/validateProducts');
 
-const { validateSales400, validateSales422 } = require('../middlewares/validateSales');
+// const { validateSales400, validateSales422 } = require('../middlewares/validateSales');
 
 const { getAllControllerProducts, 
 getByIdControllerProducts, createName, 
 updateProduct, deletProduct } = require('../controllers/productsController');
 
 const { getAllControllerSales, getByIdControllerSales, 
-    registerSales } = require('../controllers/salesController');
+    registerSales, updateSale } = require('../controllers/salesController');
 
 const router = express.Router();
 
@@ -29,6 +29,6 @@ router.delete('/products/:id', deletProduct);
 
 router.post('/sales', registerSales);
 
-router.put('/sales/:id', validateSales400, validateSales422);
+router.put('/sales/:id', updateSale);
 
 module.exports = router;
