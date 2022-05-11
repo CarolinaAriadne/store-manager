@@ -6,6 +6,18 @@ const productController = require('../../../controllers/productsController');
 describe('A chamada do controller getAllControllerProducts', () => {
 	describe('Quando não existem produtos no BD', () => {
 
+		const resultExecute = [{
+			id:1,
+			name: 'Martelo de Thor',
+			quantity: 10
+		},
+		{
+			id: 2,
+			name: "Traje de encolhimento",
+			quantity: 20
+		}
+	]
+
 		const request = {}
 		const response = {}
 
@@ -13,7 +25,7 @@ describe('A chamada do controller getAllControllerProducts', () => {
 			response.status = sinon.stub().returns(response);
 			response.json = sinon.stub().returns();
 			
-			sinon.stub(productsService, 'getAllServiceProducts')
+			sinon.stub(productsService, 'getAllServiceProducts').resolves(resultExecute)
 		})
 
 		after(() => {
@@ -52,9 +64,9 @@ describe('A chamada do controller getAllControllerProducts', () => {
 
 		before(() => {
 			response.status = sinon.stub().returns(response)
-			response.json = sinon.stub().returns(response)
+			response.json = sinon.stub().returns()
 
-			sinon.stub(productsService, 'getAllServiceProducts')
+			sinon.stub(productsService, 'getAllServiceProducts').resolves(resultExecute);
 		})
 
 		after(() => {

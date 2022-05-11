@@ -42,7 +42,7 @@ describe('Busca todos os produtos no BD - func getAllServiceProducts', () => {
 		]
 			before(() => {
 				sinon.stub(productsModel, 'getAllProductsModel')
-				.resolves([resultExecute])
+				.resolves(resultExecute)
 			});
 
 			after(() => {
@@ -61,6 +61,8 @@ describe('Busca todos os produtos no BD - func getAllServiceProducts', () => {
 		});
 		it('O array possui objetos', async () => {
 			const [result] = await  productsService.getAllServiceProducts()
+			console.log(result);
+			// const [objeto] = result;
 
 			expect(result).to.be.an('object')
 		});
