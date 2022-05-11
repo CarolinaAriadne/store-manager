@@ -25,7 +25,6 @@ const createName = async (req, res, next) => {
     const { name, quantity } = req.body;
 
     const newProduct = await productsService.createNameService(name, quantity);
-    // console.log(`Aqui é na controler ${newProduct}`);
 
     return res.status(201).json(newProduct);
   } catch (error) {
@@ -39,7 +38,7 @@ const updateProduct = async (req, res, next) => {
     const { name, quantity } = req.body;
 
     const productUpdated = await productsService.updateProductService(id, name, quantity);
-    // console.log('controller', productUpdated);
+ 
     return res.status(200).json(productUpdated);
   } catch (error) {
     next(error);

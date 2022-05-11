@@ -24,7 +24,9 @@ const getByIdServiceSales = async (id) => {
 };
 
 const registerSalesService = async (sale) => {
-    const saleId = await salesModel.getByIdSalesModel();
+    const saleId = await salesModel.registerSalesModel();
+    console.log('saleId  service', saleId);
+    console.log('sale registra venda', sale);
 
     const returnPromisse = sale
         .map(({ productId, quantity }) =>

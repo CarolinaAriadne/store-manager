@@ -24,6 +24,7 @@ const getByIdSalesModel = async (id) => {
 const registerSalesModel = async () => {
     const querySales = 'INSERT INTO StoreManager.sales (date) VALUES (NOW());';
     const [response] = await connection.execute(querySales);
+    console.log(response, 'response insert sale');
     return response.insertId;
 };
 
@@ -31,6 +32,7 @@ const registerSalesProductModel = async (saleId, productId, quantity) => {
     const query = `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity)
      VALUES (?,?,?)`;
      const [response] = await connection.execute(query, [saleId, productId, quantity]);
+     console.log(response, 'response registra sale table sale_products');
      return response;
 };
 

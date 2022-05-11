@@ -32,3 +32,5 @@ router.post('/sales', registerSales);
 router.put('/sales/:id', updateSale);
 
 module.exports = router;
+
+// testando requisitos no github
