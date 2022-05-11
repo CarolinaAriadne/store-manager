@@ -30,20 +30,20 @@ const registerSales = async (req, res, next) => {
     }
 };
 
-const updateSale = async (req, res, next) => {
-    try {
-        const { id } = req.params;
-        const { productId, quantity } = req.body;
-        const response = await salesService.updateSaleService(id, productId, quantity);
-        return res.status(200).json(response);
-    } catch (error) {
-        next(error);
-    }
-};
+// const updateSale = async (req, res, next) => {
+//     try {
+//         const { id } = req.params;
+//         const { productId, quantity } = req.body;
+//         const response = await salesService.updateSaleService(id, productId, quantity);
+//         return res.status(200).json(response);
+//     } catch (error) {
+//         next(error);
+//     }
+// };
 
 module.exports = {
     getAllControllerSales,
     getByIdControllerSales,
     registerSales, 
-    updateSale,
+    // updateSale,
 };
