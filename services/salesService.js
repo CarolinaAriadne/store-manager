@@ -25,7 +25,6 @@ const getByIdServiceSales = async (id) => {
 
 const registerSalesService = async (sale) => {
     const saleId = await salesModel.getByIdSalesModel();
-    console.log('saleId service', saleId);
 
     const returnPromisse = sale
         .map(({ productId, quantity }) =>
@@ -59,3 +58,5 @@ module.exports = {
     registerSalesService,
     updateSaleService,
 };
+
+// testanto requisitos github
