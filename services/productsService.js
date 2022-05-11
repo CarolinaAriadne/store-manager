@@ -7,6 +7,7 @@ const erroHandler = (status, message) => ({
 
 const getAllServiceProducts = async () => {
     const productsAll = await productsModel.getAllProductsModel();
+    // console.log(productsAll, 'productsAll services');
    
     if (productsAll.length === 0) {
         throw erroHandler(404, 'Product not found');
