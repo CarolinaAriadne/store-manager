@@ -2,6 +2,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const productsModel = require('../../../models/productsModel');
 const productsService = require('../../../services/productsService');
+const connection = require('./../../../models/connection');
 
 describe('Busca todos os produtos no BD - func getAllServiceProducts', () => {
   describe('Quando não existe produto no banco', () => {
@@ -75,3 +76,54 @@ describe('Busca todos os produtos no BD - func getAllServiceProducts', () => {
 		});
 	});
 });
+
+describe('Verifica produto procurado pelo id - func getByIdServiceProduct', () => {
+	describe('O id é encontrado', () => {
+  
+		const resultExecute = [{
+				id:1,
+				name: 'Martelo de Thor',
+				quantity: 10
+			}]
+	  
+			  before(() => {
+				  sinon.stub(connection, 'execute')
+				  .resolves([resultExecute]);
+			  });
+  
+			  after(() => {
+				  connection.execute.restore();
+			  });
+	  it('Retorna um objeto', async () => {
+		   const result = await productsService.getByIdServiceProduct();
+		   expect(result).to.be.an('object');
+	  })
+	  it('Objeto  contém os atributos id, name e quantity', async () => {
+		   const result = await  productsService.getByIdServiceProduct();
+		   expect(result).to.be.includes.all.keys(
+			'id',
+			'name',
+			'quantity'
+		);    
+	  });  
+	 });
+	describe('O id não é encontrado', () => {
+		const resultExecute = undefined;
+  
+		  before(() => {
+		  sinon.stub(connection, 'execute')
+		 .resolves(resultExecute);
+	   });
+  
+		  after(() => {
+		  connection.execute.restore();
+	   });
+	   it('Retorna a mensagem de erro "Product not found"', async () => {
+		try {
+   
+		} catch (err) {
+		  expect(err.message).to.be.equal('Product not found')
+		}
+	   }) 
+	 })
+  });

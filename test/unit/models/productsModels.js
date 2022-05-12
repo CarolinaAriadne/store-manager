@@ -87,18 +87,18 @@ describe('Verifica produto procurado pelo id - func getByIdControllerProducts', 
     
 			before(() => {
 				sinon.stub(connection, 'execute')
-				.resolves(resultExecute);
+				.resolves([resultExecute]);
 			});
 
 			after(() => {
 				connection.execute.restore();
 			});
     it('Retorna um objeto', async () => {
-         const result = await productsModel.getByIdProductsModel(1);
+         const result = await productsModel.getByIdProductsModel();
          expect(result).to.be.an('object');
     })
     it('Objeto  contém os atributos id, name e quantity', async () => {
-         const result = await productsModel.getByIdProductsModel(1);
+         const result = await productsModel.getByIdProductsModel();
          expect(result).to.be.includes.all.keys(
           'id',
           'name',
@@ -106,4 +106,20 @@ describe('Verifica produto procurado pelo id - func getByIdControllerProducts', 
       );    
     });  
    });
+  describe('O id não é encontrado', () => {
+      const resultExecute = [];
+
+        before(() => {
+        sinon.stub(connection, 'execute')
+       .resolves([resultExecute]);
+     });
+
+        after(() => {
+        connection.execute.restore();
+     });
+    it('Retorna undefined, se o id não é encontrado', async () => {
+        const result = await productsModel.getByIdProductsModel(6);
+        expect(result).to.be.an('undefined')
+    })  
+   })
 });
