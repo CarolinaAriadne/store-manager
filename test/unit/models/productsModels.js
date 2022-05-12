@@ -58,7 +58,7 @@ describe("Busca todos os produtos no BD - func getAllProductsModel", () => {
     it('O array não está vazio', async () => {
         const result = await productsModel.getAllProductsModel();
 
-        expect(response).to.be.not.empty;
+        expect(result).to.be.not.empty;
     });
     it('O array possui objetos', async () => {
         const [result] = await productsModel.getAllProductsModel();
@@ -74,4 +74,36 @@ describe("Busca todos os produtos no BD - func getAllProductsModel", () => {
         )    
     });
   });
+})
+
+describe('Verifica produto procurado pelo id - func getByIdControllerProducts', () => {
+  describe('O id é encontrado', () => {
+
+      const resultExecute = [{
+			  id:1,
+		  	name: 'Martelo de Thor',
+		  	quantity: 10
+		  }]
+    
+			before(() => {
+				sinon.stub(connection, 'execute')
+				.resolves(resultExecute);
+			});
+
+			after(() => {
+				connection.execute.restore();
+			});
+    it('Retorna um objeto', async () => {
+         const result = await productsModel.getByIdProductsModel(1);
+         expect(result).to.be.an('object');
+    })
+    it('Objeto  contém os atributos id, name e quantity', async () => {
+         const result = await productsModel.getByIdProductsModel(1);
+         expect(result).to.be.includes.all.keys(
+          'id',
+          'name',
+          'quantity'
+      );    
+    });  
+   });
 });
