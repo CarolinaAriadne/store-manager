@@ -125,3 +125,38 @@ describe('Verifica produto procurado pelo id, func getByIdControllerProducts ', 
 
   })
 })
+describe('Inserção de novo produto, func createName', () => {
+  describe('Produto é criado', () => {
+    
+    const request = {};
+    const response = {};
+
+    const newProduct = {
+      name: 'Capa do homem formiga',
+      quantity: 3
+
+    }
+
+    before(() => {
+
+      request.body = {name: 'Capa do homem formiga', quantity: 3}
+
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns();
+
+      sinon.stub(productsService, 'createNameService').resolves(newProduct);
+    })
+    it('Se o método json é retornando contendo um objeto', async () => {
+      await productController.createName(request, response)
+
+      expect(response.json.calledWith(sinon.match.object)).to.be.equal(true)
+
+    })
+    it('Status 201 é devolvido se o produto é inserido', async () => {
+      await productController.createName(request, response)
+
+      expect(response.status.calledWith(201)).to.be.equal(true);
+    })
+
+  })
+})

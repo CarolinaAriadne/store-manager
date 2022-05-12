@@ -2,6 +2,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const productsModel = require('../../../models/productsModel');
 const productsService = require('../../../services/productsService');
+const { execute } = require('./../../../models/connection');
 const connection = require('./../../../models/connection');
 
 describe('Busca todos os produtos no BD - func getAllServiceProducts', () => {
@@ -129,6 +130,35 @@ describe('Verifica produto procurado pelo id - func getByIdServiceProduct', () =
   });
 describe('Criação de novo produto no BD, func create -  createNameService ', () => {
 	describe('Produto inserido', () => {
+
+		const resultGetProductName = []
 		
+		  const resultCreateName = [{
+			insertId: 5
+		  }]
+		
+		  before(() => {
+			sinon.stub(productsModel, 'getProductName')
+			.resolves(resultGetProductName)
+			sinon.stub(productsModel, 'createNameModel')
+			.resolves(resultCreateName)
+		});
+		
+		after(() => {
+			productsModel.getProductName.restore();
+			productsModel.createNameModel.restore();
+		})
+		it('Se é retornado um objeto', async () => {
+			const result = await productsService.createNameService()
+
+			expect(result).to.be.an('object')
+		})
+		it('Objeto  contém os atributos  name e quantity', async () => {
+			const result = await productsService.createNameService();
+			expect(result).to.be.includes.all.keys(
+			 'name',
+			 'quantity'
+		 );    
+	   });
 	})
-})  
+})
