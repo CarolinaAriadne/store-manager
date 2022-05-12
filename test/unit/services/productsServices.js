@@ -127,3 +127,8 @@ describe('Verifica produto procurado pelo id - func getByIdServiceProduct', () =
 	   }) 
 	 })
   });
+describe('Criação de novo produto no BD, func create -  createNameService ', () => {
+	describe('Produto inserido', () => {
+		
+	})
+})  

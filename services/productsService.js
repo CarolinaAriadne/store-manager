@@ -34,9 +34,11 @@ const createNameService = async (name, quantity) => {
 
     const productInsertedId = await productsModel.createNameModel(name, quantity);
 
-    const product = await productsModel.getByIdProductsModel(productInsertedId);
+    // const product = await productsModel.getByIdProductsModel(productInsertedId);
+    // console.log(product);
+   const product = { id: productInsertedId, name, quantity };
 
-    return product;
+   return product;
 };
 
 const updateProductService = async (id, name, quantity) => {

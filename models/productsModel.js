@@ -15,6 +15,7 @@ const getByIdProductsModel = async (id) => {
 const getProductName = async (name) => {
     const query = 'SELECT * FROM StoreManager.products WHERE name = ?;';
     const [response] = await connection.execute(query, [name]);
+    console.log(response, 'getProductName');
     return response;
 };
 
@@ -22,7 +23,7 @@ const createNameModel = async (name, quantity) => {
     const query = 'INSERT INTO StoreManager.products (name, quantity) VALUES (?,?);';
     
     const [response] = await connection.execute(query, [name, quantity]);
-
+    console.log(response);
     return response.insertId;
 };
 
