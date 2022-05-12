@@ -7,6 +7,7 @@ const getAllSalesModel = async () => {
     JOIN sales_products AS sp ON sa.id = sp.sale_id
     ORDER BY sa.id, sp.product_id;`;
     const [response] = await connection.execute(query);
+    console.log(response, 'todas sales');
     return response;
 };
 
