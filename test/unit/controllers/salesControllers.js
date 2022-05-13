@@ -41,3 +41,6 @@ describe('Testa retorno das vendas', () => {
         
     })
 })
+describe('Testa se a busca pelo id retorna a venda', () => {
+    
+})

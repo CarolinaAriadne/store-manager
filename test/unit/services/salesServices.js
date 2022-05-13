@@ -1,7 +1,6 @@
 const { expect } = require('chai');
 const salesService = require('./../../../services/salesService')
 const salesModel = require('./../../../models/salesModel');
-const connection = require('./../../../models/connection');
 const { response } = require('express');
 const sinon = require('sinon');
 const { execute } = require('./../../../models/connection');
@@ -42,15 +41,17 @@ describe('Busca todas as vendas no BD, func getAllServiceSales', () => {
         const executeResponse = []
 
         before(() => {
-            sinon.stub(salesModel, ' getAllSalesModel').resolves(executeResponse)
+            sinon.stub(salesModel, 'getAllSalesModel').resolves(executeResponse)
         })
         after(() => {
             salesModel.getAllSalesModel.restore();
         })
-        it('Espera um array vazio quando vendas não são encontradas', async () => {
-            const [result] = await salesService.getAllServiceSales()
+        it('Retorna a mensagem "Sales not found"', async () => {
+            try {
 
-            expect(result).to.be.empty;
+            } catch (err) {
+              expect(err.message).to.be.equal('Sales not found')
+            }
         })
     })
 })
