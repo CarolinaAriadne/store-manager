@@ -53,3 +53,38 @@ describe('Busca todas as vendas no BD, func getAllSalesModel', () => {
         })
     })
 })
+describe('Busca uma venda pelo id', () => {
+describe('Quando o id é encontrado', async () => {
+    const resultExecute = [
+        {
+            date: "2022-05-12 21:10:50",
+            productId: 2,
+            quantity: 3
+          },
+    ]
+
+    before(() => {
+        sinon.stub(connection, 'execute').resolves([resultExecute])
+    })
+    after(() => {
+        connection.execute.restore()
+   })
+   it('É retornando um array', async () => {
+       const result = await salesModel.getByIdSalesModel()
+
+       expect(result).to.be.an('array')
+   })
+   it('O objeto contém as chaves date, productId, quantity', async () => {
+       const [result] = await salesModel.getByIdSalesModel()
+       expect(result).to.have.all.keys(
+           'date',
+           'productId',
+           'quantity'
+       )
+   })
+
+})
+
+})
+
+

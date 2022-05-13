@@ -77,7 +77,7 @@ describe("Busca todos os produtos no BD - func getAllProductsModel", () => {
   });
 })
 
-describe('Verifica produto procurado pelo id - func getByIdControllerProducts', () => {
+describe('Verifica produto procurado pelo id - func getByIdProductsModel', () => {
   describe('O id é encontrado', () => {
 
       const resultExecute = [{
