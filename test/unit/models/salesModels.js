@@ -22,7 +22,7 @@ describe('Busca todas as vendas no BD, func getAllSalesModel', () => {
             connection.execute.restore()
         })
         it('É retornado um array', async () => {
-            const result = await salesModele.getAllSalesModel()
+            const result = await salesModel.getAllSalesModel()
 
             expect(result).to.be.an('array')
         })

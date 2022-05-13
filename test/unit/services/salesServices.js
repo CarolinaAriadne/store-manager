@@ -6,7 +6,7 @@ const { response } = require('express');
 const sinon = require('sinon');
 const { execute } = require('./../../../models/connection');
 
-describe.only('Busca todas as vendas no BD, func getAllServiceSales', () => {
+describe('Busca todas as vendas no BD, func getAllServiceSales', () => {
     describe('Retorna as vendas', () => {
         const executeResponse = [{
             saleId: 1,
